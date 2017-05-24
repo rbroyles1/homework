@@ -1,0 +1,4 @@
+Homework 2
+Richard Broyles
+
+What is AAPT?  AAPT (Android Asset Packaging Tool) allows you to create, view, and update Zip-compatible archives.  It can also compille resources into binary assets.  It is the base builder for Android applications.

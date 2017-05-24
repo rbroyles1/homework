@@ -1,0 +1,77 @@
+Encapsulation:
+Also known as information hiding, encapsulation is the inclusion-within a program object-all of the resources for the object to function, which is basically the methods and data.  This is achieved by creating classes, the classes expose public methods and properties.  A class is a container, which encapsulate a set of methods, attributes, and properties to provide its intended functionalities to other classes.  In this sense, encapsulation allows a class to change its internal implementation without harming the overall functionality of the system.  This is called information hiding, or the black-box theory. 
+Inheritance:
+The ability of a new class to be created from an existing class by extension is called inheritance.  One of the most relationships between objects in the real world is specialization, which can be described as a "is-a" relationship.  For example, when we say a dog is a mammal, we mean that the dog is a specialized type of mammal.  It has all of the characterisitics of a mammal, but it specializes these characterisitics that are familiar to canis domesticus (a dog).
+
+Polymorphism:
+This comes from the Greek meaning "many forms".  This is the ability to request that the same operation (or function) be used by different types of things.  It is also the ability of a function to have the same name but have different types or number of parameters.
+Interfaces:
+Interfaces separates the implementation and defines the structure of an object.  This is useful when the implementation of a class changes frequently and the implementation of an object needs to be interchangeable.  An interface specifies what an object must do, but not how to do it.
+Abstract Classes:
+Abstract classes cannot be instantiated.  It can only be used as a super-class for other classes that extend the abstract class, which is the concept of a class.  The implementation of an abstract class is completed when it is realized by the subclass.  Only one class can inherit from an abstract class and must override all methods/properties that are declared to be abstract and may override virtual methods/properties.
+Abstract class vs. Interfaces:
+There are huge differences between interfaces and abstract classes, although both look similar.
+1) Interfaces defintion begins with the keyword interface and it is of type interface.
+2) Abstract classes are declared with the abstract keyword and it is of type class.
+3) Interfaces have no implementation, but they must be implemented.
+4) Abstract class's methods have their own default implementations and they may be extended.
+5) Interfaces can only have method declarations and properties.
+6) Abstract class's methods cannot have any implementation only when declared abstract.
+7) Interfaces can inherit from more than one interface.
+8) Abstract classes can implement more than one interface, but can only inherit one class.
+9) Abstract classes must override all abstract methods and only override virtual methods.
+10) Interfaces can be used when the implementation of a class is changing.
+11) Abstract classes can be used to provide some default behavior of a changing class.
+12) Interfaces makes class implementation interchangeable.
+13) Interfaces enhance security by hiding the implementation of a class.
+14) Abstract classes can be used when implementing a framework.
+15) Abstract classes are an excellent way to create planned inheritance hierarchies.
+
+Java Generics and arrays
+Java arrays 
+In Java, an array is a collection of variables of the same type.  These arrays can be one or multi-dimensional, with one-dimension arrays being the most common.  It organizes data in a way that can easily manipulated.  One special attribute of arrays in Java is that arrays are implemented as objects.  Because of this, there are several important advantages gained, one of which is that unused arrays can be garbage-collected through the garbage-collection process.
+Arrays are declared by:
+type array-name[] = new type[size];
+Arrays are accessed by the use of an index, which is zero-based, meaning that the first element in an array begins with 0.  For example, if you have an array of size 10, the array will have index values of 0 to 9.  The most common way to access the elements in an array is via a for-loop.
+Example:
+class ArrayDemo {
+	public static void main(String args[]) {
+		int sample = new int[10];  // declare an array sample of size 10
+		int i;
+		for (i = 0; i< 10; i++) 
+			sample[i] = i;
+		for (i = 0; i < 10; i = i + 1) {
+			System.out.println("This is sample [" + i + "]:  " + sample[i];
+		}
+	}
+}
+One of the main items about arrays that programmers must be aware of  is that when accessing the elements of the array, all arrays begin at index 0, not index 1.  Also, the last element of an array is the size of the array minus 1.
+
+Java Generics
+Generics were introduced into Java in 2004 with the release of J2SE 5.0.  They were designed to extend Java's type system to allow a type or method to operate on objects of various types while providing compile-time type safety.  At its core, generics means parameterized types.  This is important because they allow you to create classes, interfaces, and methods in which the type of data which they operate on is specified as a parameter.
+A principal advantage of generic code is that it will automatically work with the type of data passed to its type parameter.  With generics, you can define an algorithm once, independently of any specific type of data, and then apply that algorithm to a wide variety of data types with minimal effort.
+When declaring an instance of a generic type, the type argument passed to the type must be a reference type.  You cannot use a primitive type such as int or char.  This is a serious restriction because you can use the type wrappers to encapsulate the primitive type.  Java's autoboxing and unboxing mechanism makes the use of the type wrapper transparent.
+A key point about generic types is that a reference of one specific version of a generic type is not compatible with another version of the same generic type.
+Wildcards
+Type arguments are not limited to a concrete class or interface.  Java allows the use of type wildcards to serve as type arguments for parameterized types.  Wildcards are type arguments in the form of "?", with an upper or lower bound.  The exact type of the wildcard is unknown, therefore restrictions are placed on the type of methods that can be called on an object which uses parameterized types.  To specify the upper bound of a type wildcard, the extends keyword is used, which means that the type argument is a subtype of the bounding class.  For example, List<? extends Number> means that the list contains objects of some unknown type that extends the Number class.
+The use of wildcards adds flexibility because there is no inheritance relationship between wildcard types or any two parameterized types of a concrete type as a type argument.  List<Number> is not a subtype of List<Integer>.
+
+MVC Design pattern
+MVC stands for Model-View-Controller pattern.  This pattern is used to separate an application's concerns.
+Model - represents an object or POJO carrying data.  It can also have logic to update controller if the data changes.
+View - represents the visualization of the data that the model contains.
+Controller - acts on the model and the view.  It controls the data flow into the model object and updates the view whenever the data changes.  It also separates the model and the view.
+
+MVP Design Pattern
+MVP is the Model-View-Presenter pattern.  It's a user interface pattern engineered to facilitate unit testing and improves the separation of concerns in the presentation.  It is mainly used with .NET, but can also be used in Java with Java Swing.
+Model - the interface defining the data to be displayed or otherwise acted on in the user interface.
+View - a passive interface that displays the data and routes user commands to the presenter to act on that data.
+Presenter - acts on the model and the view.  It retrieves the data from repositories (model) and formats it for display on the view.
+
+MVVM Design Pattern
+MVVM is the Model-View-View model pattern.  This pattern is mainly implemented in the .NET framework, mainly with the use of XAML and Silverlight.  It was created by Ken Cooper and Ted Peters to simplify event-driven programming of UI by exploiting features of WPF and Silverlight.  This pattern is also referred to as model-view-binder.
+Model - Same as in MVC and MVP.  This refers to either a domain model (object-oriented approach) or to the data access layer, which is a data-centric approach.
+View - the structure, layout, and appearance of what the user sees on the screen.
+View model - an abstraction of the view exposing public properties and commands.  This is also called the binder, which mediates communication between the view and the data binder.
+
+Richard Broyles
