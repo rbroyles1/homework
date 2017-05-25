@@ -1,0 +1,28 @@
+What is an Activity?
+An activity is a single, focused thing that the user can do.  Almost all activities interact with the user, so the Activity class takes care of creating a window for you in which you can place your UI.
+How can I manage rotation changes?
+Device changes occur during runtime.  When a change occurs, Android restarts the running activity (onDestroy is called, followed by onCreate()).  The restart behavior is designed to help your application with alternative resources that match the new device configuration.
+What is the Android lifecycle?
+The Android lifecycle is:
+onCreate(), onStart(), onResume(), Activity Running, onPause(), onRestart(), onStop(), onDestroy(), App Shutdown.  If an app with higher priority is called, then the app is killed.
+If I'm in Activity A and I enter Activity B, what are the callbacks triggered?
+onPause(), onStop()
+If I'm in Activity A, then I enter Activity B and then press the back button, what are the callbacks triggered?
+onPause(), onStop(), onDestroy()
+
+How can I send information from an Activity to another Activity?
+Android intents are objects used to trigger actions from other activities.  One of the most common uses of Intents is to open a new Activity in your app.  This is used to pass information between activities
+What is the difference between an Activity and a Fragment?
+A fragment is a part of an activity.  Fragments can be thought of as sub-activities, where the complete screen with which the user is called an activity.
+When is the onDestroy method called?
+OnDestroy is called before your activity is destroyed.  This happens because the activity is finishing(someone called finish() on it, or because the system is temporarily destroying this instance of the activity to save space, which can be distinguished with the isFinishing() method.
+How can you guarantee backwards compatibility in Android?
+Backwards compatibility is guaranteed when the app is developed using an API from a previous version of Android.  Designing apps with previous versions of the API as the minimum API guarantees backwards compatibility.
+What are the lifecycle callbacks that are guaranteed to happen in an Activity?
+onCreate, onStart, onRestart, onResume
+Can I destroy an Activity?
+Yes, activities can be destroyed by calling the finish() method from within the Activity.
+I want to get information back from an Activity.  How can I do that?
+If you have two different activities, you get data from the first activity by using getIntent() method and then use an extra (e.g. getStringExtra(), getIntExtra(), etc.)  To return to the first activity, you must use the setResult() method with the intent data to return back as a parameter.   To get the returning data from the second activity in your first activity, you override the onActivityResult() method and use the intent to get the data.
+
+Richard Broyles
