@@ -1,0 +1,28 @@
+W2H1
+
+Volatile keyword - used to mark a Java variable as "being stored in main memory".  This means that every read of a volatile variable will be read from the computer's main memory and not from the CPU cache, and that every write to a volatile variable will be written to main memory.
+
+Synchronized keyword - enables a simple strategy for preventing thread interference and memory consistency errors: if an object is visible to more than one thread, all reads or writes to that object's variables are done through synchronized methods.
+
+Transient keyword - used in serialization, any data member defined as transient will not serialized.
+
+Maps - an object that maps keys to values.  A map cannot contain duplicate keys; each key can map to at most one value (similar to Dictionaries).
+
+List - an ordered collection (also known as a sequence).  The user of this interface has precise control over where in the list each element is inserted.  Lists usually allow duplicate elements.
+Set - a collection that contains no duplicate elements.  More formally, sets contain no pair of elements such that e1.equals(e2), and at most one null element.
+
+Maps vs. List vs. Set - List allows duplicate elements.  Set doesn't allow duplicates.  Map stores the elements as a key and value pair.  It allows duplicate values but not duplicate keys.
+Lists allows any number of null values.  Sets allow a single null value.  Maps can have a single null key at most and any number of null values.
+Lists and all of its implementation classes maintains the insertion order.  Set doesn't maintain any order.  Maps also do not store the elements in an order, but few of its classes does the same.
+
+ArrayList vs. LinkedList
+LinkedLists allow for constant-time insertions or removals using iterators, but only sequential access of elements.  You can walk forwards and backwards, but finding an element in the list takes time proportional to the size of the list.
+
+ArrayList allow fast random access, so any element can be grabbed in constant time; but adding or removing from anywhere but the end of the array requires shifting all the later elements over, either to make an opening or to fill the gap.
+
+Concurrent Package(Concurrent Hashmap, Atomic variables)
+Concurrent Hashmaps - a hash table supporting full concurrency or retrievals and adjustable concurrency for updates.  This class obeys the same functional specification as Hashtable.
+
+Atomic variables - variables that support atomic operations on single variables.
+
+Richard Broyles
