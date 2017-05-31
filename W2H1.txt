@@ -1,0 +1,26 @@
+Gitflows (workflows using Git and Github)
+
+This is derived from Vincent Driessen at nvie.
+
+The Gitflow Workflow defines a strict branching model designed around a project release.  While somewhat more complicated than the Feature Branch Workflow, this provides a robust framework for managing larger projects.
+
+This workflow doesn't add any new concepts or commands beyond what is required for the Feature Branch Workflow.  Instead, it assigns very specific roles to different branches and defines how and when they should interact.  In addition to feature branches, it uses individual branches for preparing, maintaining, and recording releases.  Of course, you also get to leverage all the benefits of the Feature Branch Workflow: pull requests, isolated experiments, and more efficient collaboration.
+
+How this works:
+
+Historical Branches
+Instead of a single master branch, this workflow uses two branches to record the history of the project.  The master branch stores the offical release history, and the develop branch serves as an integration branch for features.  It's also convenient to tag all commits in the master branch with a version number.
+
+Feature Branches
+Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration.  But, instead of branching off of master, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop.  Features should never interact directly with master.
+
+Release Branches
+Once develop has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of develop.  Creating this branch starts the next release cycle, so no new features can be added after this point--only bug fixes, documentation generation, and other release-orientation tasks should go in this branch.  Once it's ready to ship, the release gets merged into master and tagged with a version number.  In addition, it should be merged back into develop, which may have progressed since the release was initiated.
+
+Using a dedicated branch to prepare releases makes it possible for one team to polish the current release while another team continues working on features for the next release.
+
+Maintenance Branches
+Maintenance or "hotfix" branches are used to quickly patch production releases.  This is the only branch that should fork directly off of master.  As soon as the fix is complete, it should be merged into both master and develop (or current release branch), and master should be tagged with an updated version number.
+
+Richard Broyles
+
