@@ -1,0 +1,24 @@
+Summary for Speeding Up Your Android Gradle Builds
+The video is about tips for speeding up your Android build cycle.
+10 Tips for speeding up your Android builds - the project they used was the Santa Tracker app.  They benchmarked the speed against 3 scenarios:  Full build, Incremental build with a Java change, and Incremental build with a resource change.  Build times are dependent on the project's characteristics.  Actual result will vary.
+1)  Use the latest Android Gradle Plugin - use Maven to get the latest version.  Performance gains are from 18% - 36%
+2) Avoid legacy multidex
+3) Disable multi-APK - this is not needed during the development phase; use the splits() block to create smaller APK, or define a property called devBuild; -pdevBuild in preferences.
+4) Include minimal resources - resConfigs keyword
+5) Disable png crunching - png size optiimizations, set cruncherEnabled flag to false
+6) Use Instant Run - works on API 21 or above
+7) Avoid inadvertent changes to your project. - forces Android manifest to change after every build.
+8) Do not use dynamic versions - makes build non-deterministic
+9)  Watch your memory.
+10) Enable Gradle cache. - works with previous builds; enables distributed caching.
+Cumulative improvements:  Full build is 3x faster, Incremental build with a Java changes is 12x faster, and incremental build with a resource change is 3x faster.
+
+Multi-module projects - modules are transitively dependent on each other.
+Compiliation avoidance - ABI change, Non-ABI change has no impact on users.
+''Compile" dependency is all wrong!  There is no distinction between module composition and module implementation details.  All consumers of a module consumes all their transitive dependencies.  Compile is deprecated, replace with api or implementation.
+Compilation + ABI changes = faster builds
+
+Debugging slow builds
+Slow builds are not normal.  Builds are a tax on your project.
+Danger of doLast() - write a custom task with inputs and outputs so that Gradle can cache it.
+Gradle has tools to help:  -dry-run, --info, --profile (outputs a .html page). Gradle profiler (used for profiling and benchmarking)

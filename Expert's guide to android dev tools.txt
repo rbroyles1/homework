@@ -1,0 +1,3 @@
+Expert's Guide to Android Development Tools - Google IO '16
+
+This video is about tips and tricks you can use in Android Developement Studio or IntelliJ to make writing your code easier and faster.  The speakers give you keyboard shortcuts to allow you to code faster.  The speakers gave tips on how to efficiently use your debugger to debug your application by attaching to a process in real-time, how to attach the debugger to the emulator, and how to efficiently use your break points to efficiently find bugs.  Another set of tricks and tips is how to speed up Gradle to speed up your builds.

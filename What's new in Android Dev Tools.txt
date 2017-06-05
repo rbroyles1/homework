@@ -1,0 +1,6 @@
+What's New in Android Development Tools
+Android Studio 3.0 - based on IntelliJ 2017.1 
+Develop - Emojis, Support for Kotlin, ability to convert Java code to Kotlin, better handling of error, Chains (distribute widgets along an axis), support for sample data, support for downloadable fonts from "O", support for adaptive icons, refactoring tools to create dynamic apps, 
+Build- APK debugging improvements, build cache in Gradle 3.5, share with team members and build server, multi-modules, handling parallel build bottlenecks.
+Test - Incremental Tasks
+Release- Improved APK analyzer, Incremental packaging and shrinking

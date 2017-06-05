@@ -1,0 +1,23 @@
+Video summary for What's new in Android (Keynote talk for Google I/O '17)
+Android "O"
+UI and Graphics - Picture-in-Picture, adaptive icons, shortcuts and widgets
+Color management - 16-bit PNG, ICC profiles in JPEG/PNG/WebP; new Color APIs
+Support for Multiple displays
+Media Playback - getMetrics() (evaluate the codec, bitrate, baudrate, etc.); Improved buffering controls; improved seeking in videos, DRM playback
+Recording - new support for MPEG-2 TS stream; new support for metadata tracks
+Webview - Google Safe Browsing (from Chrome), Multiple processes, Termination handle and Renderer Importance APIs
+Animator Sets - setCurrentPlayTime(long); reverse(), Physics-based animations
+Autofill on forms, provide a back-end cache to retrieve data (Service)
+Text - Fonts in XML (res/font/myfont.tiff), font-families, Layouts
+Downloadable Fonts - Load from code or XML; Font provider in Google Play Services (access to all 800 fonts)
+Autosizing Text View
+Accessibility services Utilities - Language detection, accessibility button, separate volume controls, Fingerprint gestures
+findViewById() - Castaway (public <T extends View> findViewById(int id);  TextView tv = findViewById(R.id.myTextView);
+Notifications channels
+Strict Mode (unbuffered I/O, VM policy)
+Media File Access - useful for large remote sources
+Security - Privacy (ANDROID_ID will be different for every user), Google Play Protect
+Official support for Kotlin (Android Studio 3.0), new Java packages, easier development, Lifecycle improvements, and persistence
+New runtimes -  concurrent-copying collector, Heap compaction in foreground, new optimizations, DEX locality.  Behavior changes
+EmojiCompat - Bundled or Updateable
+Alert windows - TYPE_APPLICATION_OVERLAY (for O SDK only)
