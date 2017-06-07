@@ -1,0 +1,53 @@
+HttpURLConnection - A URL connection with support for HTTP-specific features.  Uses of this class follow a pattern:
+1) Obtain a new httpURLConnection by calling URL.openConnection() and casting the result to HttpURLConnection.
+2) Prepare the request.  The primary property of a request is its URI.  Request headers may also include metadata such as credentials, preferred content types, and session cookies.
+3) Optionally upload a request body.  Instances must be configured with setOutput(true) if they request a body.  Transmit data by writing to the stream returned by getOutputStream().
+4) Read the response.  Response headers typically include metadata such as the response body's content type and length, modified dates and session cookies.  The response body may be read from the stream returned by getInputStream().  If the response has no body, that method returns an empty stream.
+5.Disconnect.  Once the response body has been read, the HttpURLConnection should be closed by calling disconnect().  Disconnecting releases the resources held by a connection so that they may be closed or reused.
+Example:
+URL url = new URL ("http://www.android.com");
+HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+try {
+	InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+	readStream(in);
+} finally {
+	urlConnection.disconnect();
+}
+OKHttpClient - OKHttp is a moden, fast and efficient Http client which supports HTTP/2 and SPDY.  OkHttp is a very capable networking tool out of the box, without the need of any REST library and probably is the most developers would choose if they could only include one library in their projects.  OKHttp sits on top of Okio, a library that complements java.io and java.nio to make it much easier to access, store, and process your data.  It provides fast I/O and resizable buffers.  OKHttp depends on Okio, so you will need Okio in your project, but Okio can be used on its own.
+Volley - a library that acts as an http client, REST helper and image loader.  Takes care of requesting, loading, caching, threading, synchronization, and more.  It's ready to deal with JSON, images, raw text, and allows customization.  Volley was designed for RPC style network operations that populate the UI.
+Volley by default uses the Apache Http stack on Froyo and HttpURLConnection stack on Gingerbread and above.  Volley allows us to easilty set up OkHttpClient as its transport layer.  
+
+GSON - is a JSON serialization and deserialization library that uses reflection to populate Java model objects from JSON objects.  You can add your own serializers and deserializers as well as beter control and customization.
+
+Setting up OKHttpClient, Volley, GSON
+OKHttpClient - OKHttp have strong defaults on purpose.  By default it's really fast and robust so app developers don't need to set up gzip, http/2, or ssl as these are turned on automatically.  These defaults can be modified via setters among a lot of other configs.  OKHttp is the transport layer for Volley.  To set this up, you will need to create an implementation of a HttpStackl.  A HttpStack is an HTTP stack abstraction (interface) provided by Volley. 
+Example:
+OkHttpStack myOkHttpStack = new OkHttpStack(new OkHttpClient());
+You can add OKHttpClient by adding the following line to your app dependencies section in Gradle:
+compile 'com.squareup.okhttp:okhttp:2.7.5'
+Volley - Volley creates requests and adds them to a queue.  One queue is enough for the entire application, so each time you want to make a request, you will get the only Volley queue to add the request to that queue.  Example:
+
+public RequestQueue getVolleyRequestQueue() {
+	if (mRequestQueue == null) {
+ 		mRequestQueue = Volley.newRequestQueue(this, new OKHttpStack(new OKHttpClient()));
+	}
+	return mRequestQueue;
+}
+
+If you don't provide an HttpStack, Volley will create a stack depending on the API level (which will be HttpURLConnection).  To add Volley to Android, add the following line in app dependencies in Gradle:
+compile 'com.android.volley:volley:1.0.0'
+
+GSON Set up
+To add GSON to your Android project, you will need to download the GSON library from Google and add the following line in the app dependencies part in Gradle:
+
+compile 'com.google.code.gson:gson:2.8.0'
+
+Retrofit 2 - Retrofit turns your HTTP API into a Java interface.  Retrofit is the class through which your API interfaces are turned into callable objects.  Converters can be added to support other types.  Retrofit supports 6 sibiling modules:  GSON, Jackson, Moshi, Protobuf, Wire, and Simple XML.  You can add Retrofit 2 to your Android project by adding the following line in Gradle:
+
+compile 'com.squareup.retrofit2:retrofit:2.3.0'.  Retrofit requires at minimum Java 7 or Android 2.3
+
+Creating Android Libraries
+Android libraries are structually the same as an Android app module.  It can include everything needed to build an app, including source code, resource files, and an Android manifest.  However, instead of compiling into an APK that runs on a device, an Android library compiles into an Android Archive (AAR) file that can be used as a dependency for an Android app module.  Unlike JAR files, AAR files can contain Android resources and a manifest file, which allows you to bundle shared resources like layouts and drawables in addition to Java classes and methods.  We use libraries for three things: 1) Libraries have code that already works with most apps (not re-inventing the wheel), 2) Saves time in coding, 3) Android is a large community of open-source developers with solutions that have already been tested and we know they work.
+
+Firebase
+Firebase is a platform for mobile and web apps. It is a NoSQL type database that makes use of sockets, which allows the client to receive information in realtime without having to make GET requests to the server. Firebase has three main services:  Realtime database, Authentication, and Static Hosting on the cloud.

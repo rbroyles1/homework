@@ -1,0 +1,81 @@
+ListView - ListView is a group that displays a list of scrollable items.  The list items are automatically inserted to the list using an Adapter that pulls content from a source such as an array or database query and converts each item result into a view that's placed into the list.
+Code example (from Android Developer website:  http://developer.android.com/guide/topics/ui/layout/listview.html)
+public class ListViewLoader extends ListActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    // This is the Adapter being used to display the list's data
+    SimpleCursorAdapter mAdapter;
+
+    // These are the Contacts rows that we will retrieve
+    static final String[] PROJECTION = new String[] {ContactsContract.Data._ID,
+            ContactsContract.Data.DISPLAY_NAME};
+
+    // This is the select criteria
+    static final String SELECTION = "((" +
+            ContactsContract.Data.DISPLAY_NAME + " NOTNULL) AND (" +
+            ContactsContract.Data.DISPLAY_NAME + " != '' ))";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Create a progress bar to display while the list loads
+        ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        progressBar.setIndeterminate(true);
+        getListView().setEmptyView(progressBar);
+
+        // Must add the progress bar to the root of the layout
+        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+        root.addView(progressBar);
+
+        // For the cursor adapter, specify which columns go into which views
+        String[] fromColumns = {ContactsContract.Data.DISPLAY_NAME};
+        int[] toViews = {android.R.id.text1}; // The TextView in simple_list_item_1
+
+        // Create an empty adapter we will use to display the loaded data.
+        // We pass null for the cursor, then update it in onLoadFinished()
+        mAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1, null,
+                fromColumns, toViews, 0);
+        setListAdapter(mAdapter);
+
+        // Prepare the loader.  Either re-connect with an existing one,
+        // or start a new one.
+        getLoaderManager().initLoader(0, null, this);
+    }
+
+    // Called when a new Loader needs to be created
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Now create and return a CursorLoader that will take care of
+        // creating a Cursor for the data being displayed.
+        return new CursorLoader(this, ContactsContract.Data.CONTENT_URI,
+                PROJECTION, SELECTION, null, null);
+    }
+
+    // Called when a previously created loader has finished loading
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // Swap the new cursor in.  (The framework will take care of closing the
+        // old cursor once we return.)
+        mAdapter.swapCursor(data);
+    }
+
+    // Called when a previously created loader is reset, making the data unavailable
+    public void onLoaderReset(Loader<Cursor> loader) {
+        // This is called when the last Cursor provided to onLoadFinished()
+        // above is about to be closed.  We need to make sure we are no
+        // longer using it.
+        mAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // Do something when a list item is clicked
+    }
+}
+
+RecyclerView - Many apps need to display user-interface elements based on large data sets, or data that frequently changes.  For example, a music app might need to display information about thousands of albums, but only a dozen of those albums might be on-screen at a time.  If the app created UI widgets for each of those albums, the app would end up using a lot of memory and storage, potentially making the app slow and crash-prone.
+To address this situation, the ASL provides the RecyclerView suite of objects.  RecyclerView and its associated classes and interfaces help design and implement a dynamic user interface that runs efficiently.
+Under the RecyclerView model, several different components work together to display your data.  Some of these components can be used in their modified form.  The overall container for the dynamic user interface is a RecyclerView object.  You add this object to your activity's layout; the RecyclerView, in turn, fills itself with smaller views representing the individual items.  The individual items are represented by view holder objects.  These objects are instances of the class defined by extending RecyclerView.ViewHolder.  Each view holder is in charge of displaying a single item, and has its own view.  The RecyclerView creates only as many view holders as are needed to display the on-screen portion of the dynamic content, plus a few extras.  As the user scrolls through the list, the RecyclerView takes the off-screen views and rebinds them to the data which is scrolling onto the screen.
+The view holder objects are managed by an adapter, which you create by extending the abstract class.  The adapter creates view holders as needed.  At the same time, the adapter binds the view holders to their data.  It does this by assigning the view holder to a position, and by calling the adapter's onBindViewHolder() method.
