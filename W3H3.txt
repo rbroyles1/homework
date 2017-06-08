@@ -1,0 +1,40 @@
+Picasso - Picasso is a powerful Android library for image downloading and caching.  It is very simple  to use and you only need to write a few lines of code for the job.  Picasso allows you to load an image from anywhere very easily, you only need to provide the path to the image.  Picasso also checks whether an image is being loaded from the cache, a hard disk, or a server.
+Glide - Glide was introduced by Google in 2014 as an image loader library.  Glide allows you to do the same as Picasso.  It allows you to load an image from anywhere easily, you only need to provide the path to the image.  It allows you to use only a few lines of code to load an image, and it also checks whether an image is being loaded from the cache, a hard disk, or a server.
+Differences between Glide and Picasso
+Picasso only has 1 line of code to add to your app dependency in Gradle.  Glide has 2 lines of code, one line to have the Android Support Library version 4 added.  Loading an image with Glide is the same as Picasso.  Glide is designed far better since the with command doesn't only accept Context but also alllows images to be loaded from the Activity/Fragment and is integrated with the Activity's lifecycle.  
+What sets Picasso apart from Glide is how the images are loaded.  The default Bitmap Format for Glide is set to RGB_565, which causes a higher memory footprint when loading the image.  Picasso's Bitmap Format is set at ARGB_8888, which has a lower memory footprint than Glide.  If you want to change the Bitmap Format in Glide, you will need to create a new class that extends from the GlideModule.
+Picasso loads the full-size image into memory and lets the GPU resize the image in real-time, while Glide loads the exact size of the image into memory which is a best practice.  One of the main problems with Picasso is the image quality.  The bitmap format that Picasso uses has worse image quality and the way Picasso caches images causes poor image quality.  Picasso caches the full-size of an image while Glide keeps the image at 752x568, which allows the loading of images to much faster in Glide than in Picasso.  Glide also supports GIF animation, while Picasso does not.
+
+Espresso - The Espresso testing framework, provided by the Android Testing Support Library, provides APIs for writing UI tests to simulate user interactions within a single target app. Espresso tests can run on devices running Android 2.3.3 (API level 10) and higher. A key benefit of using Espresso is that it provides automatic synchronization of test actions with the UI of the app you are testing. Espresso detects when the main thread is idle, so it is able to run your test commands at the appropriate time, improving the reliability of your tests. This capability also relieves you from having to add any timing workarounds, such as Thread.sleep() in your test code.
+
+Mockito - Mockito is a framework for unit testing with mock objects. A unit test should test functionality in isolation. Side effects from other classes or the system should be eliminated for a unit test, if possible.
+
+This can be done via using test replacements (test doubles) for the real dependencies. Test doubles can be classified like the following:
+
+A dummy object is passed around but never used, i.e., its methods are never called. Such an object can for example be used to fill the parameter list of a method.
+
+Fake objects have working implementations, but are usually simplified. For example, they use an in memory database and not a real database.
+
+A stub class is an partial implementation for an interface or class with the purpose of using an instance of this stub class during testing. Stubs usually don’t respond to anything outside what’s programmed in for the test. Stubs may also record information about calls.
+
+A mock object is a dummy implementation for an interface or a class in which you define the output of certain method calls. Mock objects are configured to perform a certain behavior during a test. They typical record the interaction with the system and test can validate that.
+
+Test doubles can be passed to other objects which are tested. Your tests can validate that the class reacts correctly during tests. For example, you can validate if certain methods on the mock object were called. This helps to ensure that you only test the class while running tests and that your tests are not affected by any side effects.
+
+ 
+TDD (Test Driven Development) and Behavior Driven Development (BDD) - Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: requirements are turned into very specific test cases, then the software is improved to pass the new tests, only. This is opposed to software development that allows software to be added that is not proven to meet requirements.
+
+Kent Beck, who is credited with having developed or 'rediscovered' the technique, stated in 2003 that TDD encourages simple designs and inspires confidence.
+
+Test-driven development is related to the test-first programming concepts of extreme programming, begun in 1999, but more recently has created more general interest in its own right.
+
+Programmers also apply the concept to improving and debugging legacy code developed with older techniques.
+
+Behavior-driven development (BDD) is a software development process that emerged from test-driven development (TDD). Behavior-driven development combines the general techniques and principles of TDD with ideas from domain-driven design and object-oriented analysis and design to provide software development and management teams with shared tools and a shared process to collaborate on software development.
+
+Although BDD is principally an idea about how software development should be managed by both business interests and technical insight, the practice of BDD does assume the use of specialized software tools to support the development process.[2] Although these tools are often developed specifically for use in BDD projects, they can be seen as specialized forms of the tooling that supports test-driven development. The tools serve to add automation to the ubiquitous language that is a central theme of BDD.
+
+BDD is largely facilitated through the use of a simple domain-specific language (DSL) using natural language constructs (e.g., English-like sentences) that can express the behavior and the expected outcomes. Test scripts have long been a popular application of DSLs with varying degrees of sophistication. BDD is considered an effective technical practice especially when the "problem space" of the business problem to solve is complex.
+
+
+Green Red Refactor - Red Green Refactor is the smallest unit test iteration under TDD. 'Red' means that you create a test case scenario that will fail. You shouldn't write any production code that will fail.  This test will make you find the error that failed the test and correct it.  'Green' means that you create a test case that will pass.  You do this by replacing any exception code with return 0.  'Refactor' means that if you find a test case that fails, you should clean up your code to make it work.
