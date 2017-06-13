@@ -1,0 +1,20 @@
+1) What is the Android Lifecycle? App created, onCreate(), onStart, onResume, onPause, onStop, onDestroy
+2) What is an Intent? An intent is the messaging system in Android.  This system allows sharing information between components and starting components.
+3) If I'm in Activity A and I enter Activity B, what callbacks are triggered? onResume, onPause, onStop, onStart 
+4) If I'm in Activity A and I enter Activity B and I press the back button, what callbacks are triggered? onPause, onStop, onResume, onRestart
+5) How can I send information from an Activity to another Activity? Use intent extras to bundle information and the Parcelable interface.
+6) What is the difference between an Activity and an Fragment?  Activities are one of the main components, fragments need a parent activity  Fragments are resusable segments of the UI and also the ability to create fragments without a UI.
+7) How to communicate between a Fragment with an Activity?  Implement a communication interface.  It is defined in the fragment class and implemented in the activity.
+8) How to communicate between a Fragment and another Fragment?  Implement a communication interface between the two fragments and the parent activity will implement both interfaces and act as a communication controller between the two fragments.
+9) What is the difference between a Service and an Activity?  A service performs long running operations in the background.  Activities handle UI for the user.
+10) What are the different types of Services?  Bound, Scheduled, Started
+11) What is the lifecycle of a Service?  onCreate, onStart, onDestroy
+12) How can I make a network request without using a third-part library?  A native class called HttpURLConnection and add the permission to the Android Manifest
+13) How can I have Retrofit to load my API information?  Add the dependency to the .gradle file; add POJO entity to project, add Retrofit Interface (GET, POST, PUT, DELETE annotations and define the path of the endpoint), create the Retrofit instance with the builder, and finally construct the service.
+14) Common library for parsing JSON?  GSON, Moshi, or Jackson
+15) What is Firebase?  Firebase is a mobile backend that provides a wide variety of services such as Cloud messaging, analytics, database, authentication, testing, remote configuration, microservices.
+16) How do you enable Firebase in your project?  Create a new FIrebase in the Firebase development console, provide a packaging id, and SHA-1.   This will create a JSON authentication file which needs to be added to the root portion of the diectory.  Sync the .gradle files together to allow for the JSON file to add functionality to your app.
+17) How to setup PUSH notifications with Firebase?  Set up cloud messaging, create a subclass of the cloud messaging service.
+18) What is unit testing?  Makes sure the logic of the application works for all cases.
+19) What is instrumentation testing? Tests the relationship the logic of your program versus the system; how well your design works between your logic and the business rules.
+20) What is behavioral testing?  Behavioral testing tests against the system as a whole.
