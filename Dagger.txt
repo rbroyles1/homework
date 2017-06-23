@@ -1,0 +1,19 @@
+Dagger 2 vs. Dagger 1
+Dagger is a dependency injection tool for Android.  It was created in 2012 by the developers at Square who liked the idea of dependency injection in Java, but found Guice (the dependency injection tool in use then) to be slow.  Dagger works by defining modules that contain provider methods for all of the dependency that you want to inject, then loading those modules into an object graph and finally injecting the contents into targets as needed.
+The advantages of Dagger 2 over Dagger 1 are:
+1) No more reflection - everything is done with concrete method calls.
+2) No more runtime graph composition - improves performance.
+3) Traceable - better generated code and no reflection help makes the code more readable and easy to follow.
+4) Supports method injection in addition to field and constructor injection which were the only types supported in Dagger 1.
+5) Modules requires less configuration.
+6) Allows users to use any well-formed scope annotation.
+Disadvantages of Dagger 2:
+1) The inject() method now has a strong type association with the injection target.  This complicates a common practice of injecting from base classes (e.g. base activities, fragments, etc.)
+2) Component implementation requires rebuilding the project to appear and any injection-related compile errors result in the class not being generated.
+3) Does not support overrides.
+Note: Dagger 1 was deprecated as of 9/15/2016.
+
+Three main parts of Dagger
+The three main parts of Dagger are the Module, the Component, and the Injector.
+
+The main Dagger annotations are:  @Provides, @Component, @Inject, @Singleton, @Reusableccc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
